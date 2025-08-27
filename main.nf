@@ -47,6 +47,7 @@ process run_dragen {
         --enable-variant-caller true \\
         --intermediate-results-dir ${params.intermediate_dir} \\
         --output-file-prefix ${params.prefix} \\
-        --output-directory ${params.output_dir}
+        --output-directory ${params.output_dir} \\
+        --lic-server ${params.lic}
     """
 }
