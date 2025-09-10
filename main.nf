@@ -15,6 +15,8 @@ workflow {
 
 process run_dragen {
 
+    label 'dragen'
+    
     tag "${params.rgsm}"
     publishDir "${params.output_dir}", mode: 'copy'
     
