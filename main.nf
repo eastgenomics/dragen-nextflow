@@ -15,6 +15,8 @@ workflow {
 
 process run_dragen {
 
+    label 'dragen'
+
     secret 'DRAGEN_USERNAME'
     secret 'DRAGEN_PASSWORD'
 
