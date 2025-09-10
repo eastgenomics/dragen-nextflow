@@ -8,15 +8,17 @@
         "input_output_options": {
             "title": "Input/Output Options",
             "type": "object",
-            "required": ["fasta_1", "fasta_2", "lic"],
+            "required": ["fasta1", "fasta2", "lic"],
             "properties": {
-                "fasta_1": {
+                "fasta1": {
                     "type": "string",
-                    "description": "S3 Path to the first FASTA file"
+                    "description": "S3 Path to the first FASTA file",
+                    "format": "file-path"
                 },
-                "fasta_2": {
+                "fasta2": {
                     "type": "string",
-                    "description": "S3 Path to the second FASTA file"
+                    "description": "S3 Path to the second FASTA file",
+                    "format": "file-path"
                 },
                 "lic": {
                     "type": "string",
