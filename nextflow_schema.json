@@ -8,7 +8,7 @@
         "input_output_options": {
             "title": "Input/Output Options",
             "type": "object",
-            "required": ["fasta1", "fasta2", "lic"],
+            "required": ["fastq1", "fastq2", "lic"],
             "properties": {
                 "fasta1": {
                     "type": "string",
