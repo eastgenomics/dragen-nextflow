@@ -15,6 +15,9 @@ workflow {
 
 process run_dragen {
 
+    secret 'DRAGEN_USERNAME'
+    secret 'DRAGEN_PASSWORD'
+
     tag "${params.rgsm}"
     publishDir "${params.output_dir}", mode: 'copy'
     
@@ -48,6 +51,6 @@ process run_dragen {
         --intermediate-results-dir ${params.intermediate_dir} \\
         --output-file-prefix ${params.prefix} \\
         --output-directory ${params.output_dir} \\
-        --lic-server ${params.lic}
+        --lic-server \$DRAGEN_PASSWORD:\$DRAGEN_USERNAME@license.edicogenome.com
     """
 }
