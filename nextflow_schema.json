@@ -1,5 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/eastgenomics/dragen-nextflow/refs/heads/add_schema/nextflow_schema.json",
     "title": "Nextflow Configuration Schema",
     "description": "Schema for validating Nextflow configuration",
     "type": "object",
@@ -23,5 +24,9 @@
                 }
             }
         }
-    }
+    },
+    "allOf": [
+        { "$ref": "#/$defs/input_output_options" }
+    ]
+    
 }
