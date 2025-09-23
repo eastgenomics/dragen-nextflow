@@ -53,6 +53,6 @@ process run_dragen {
         --intermediate-results-dir ${params.intermediate_dir} \\
         --output-file-prefix ${params.prefix} \\
         --output-directory ${params.output_dir} \\
-        --lic-server \$DRAGEN_PASSWORD:\$DRAGEN_USERNAME@license.edicogenome.com
+        --lic-server ${params.lic}
     """
 }
