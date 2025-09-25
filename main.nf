@@ -2,13 +2,11 @@ nextflow.enable.dsl = 2
 
 workflow {
 
-    ch_fastq1 = Channel.fromPath(params.fastq1)
-    ch_fastq2 = Channel.fromPath(params.fastq2)
+    bam = Channel.fromPath(params.bam)
     ch_ref = Channel.fromPath(params.ref)
 
     run_dragen(
-        ch_fastq1,
-        ch_fastq2,
+        bam,
         ch_ref
     )
 }
@@ -20,12 +18,10 @@ process run_dragen {
     secret 'DRAGEN_USERNAME'
     secret 'DRAGEN_PASSWORD'
 
-    tag "${params.rgsm}"
     publishDir "${params.output_dir}", mode: 'copy'
     
     input:
-    path fastq1
-    path fastq2
+    path bam
     path ref_gz
 
     output:
@@ -42,14 +38,16 @@ process run_dragen {
 
     /opt/edico/bin/dragen \\
         -r ref_data \\
-        --fastq-file1 ${fastq1} \\
-        --fastq-file2 ${fastq2} \\
-        --RGID ${params.rgid} \\
-        --RGSM ${params.rgsm} \\
-        --enable-map-align true \\
+        --tumor-bam-input ${bam} \\
+        --enable-map-align false \\
         --enable-map-align-output true \\
-        --enable-duplicate-marking true \\
-        --enable-variant-caller true \\
+        --enable-cnv true \\
+        --enable-variant-caller false \\
+        --cnv-enable-gcbias-correction false \\
+        --vc-skip-germline-tagging true \\
+        --cnv-target-bed ${params.target_bed} \\
+        --cnv-combined-counts ${params.combined_counts} \\
+        --cnv-population-b-allele-vcf ${params.population_b_allele_vcf} \\
         --intermediate-results-dir ${params.intermediate_dir} \\
         --output-file-prefix ${params.prefix} \\
         --output-directory ${params.output_dir} \\
