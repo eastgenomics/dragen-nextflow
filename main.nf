@@ -4,10 +4,24 @@ workflow {
 
     bam = Channel.fromPath(params.bam)
     ch_ref = Channel.fromPath(params.ref)
+    bed = Channel.fromPath(params.target_bed)
+    combined_counts = Channel.fromPath(params.combined_counts)
+    population_b_allele_vcf = Channel.fromPath(params.population_b_allele_vcf)
+    intermediate_dir = Channel.value(params.intermediate_dir)
+    prefix = Channel.value(params.prefix)
+    output_dir = Channel.value(params.output_dir)
+    lic = Channel.value(params.lic)
 
     run_dragen(
         bam,
-        ch_ref
+        ch_ref,
+        bed,
+        combined_counts,
+        population_b_allele_vcf,
+        intermediate_dir,
+        prefix,
+        output_dir,
+        lic
     )
 }
 
@@ -23,6 +37,13 @@ process run_dragen {
     input:
     path bam
     path ref_gz
+    path target_bed
+    path combined_counts
+    path population_b_allele_vcf
+    val intermediate_dir
+    val prefix
+    val output_dir
+    val lic
 
     output:
     path("${params.output_dir}")
