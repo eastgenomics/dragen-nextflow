@@ -71,6 +71,7 @@ process run_dragen {
         --intermediate-results-dir ${intermediate_dir} \\
         --output-file-prefix ${prefix} \\
         --output-directory ${output_dir} \\
+        --max-base-quality 63 \\
         --lic-server ${lic}
     """
 }
